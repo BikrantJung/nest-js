@@ -1,6 +1,7 @@
-import { Controller } from "@nestjs/common";
-import { Post } from "@nestjs/common/decorators";
+import { Controller, Post } from "@nestjs/common";
+import { Body } from "@nestjs/common/decorators";
 import { AuthService } from "./auth.service";
+import { AuthDto } from "./dto";
 
 // Controller is going to call a function from .service.ts
 // Controllers are responsible for creating endpoints
@@ -15,8 +16,13 @@ export class AuthController {
   */
   constructor(private authService: AuthService) {}
 
+  // login(@Req() req: Request) {
+  // We should not use Request from a library, what if we chang the library later so...
+  //   return this.authService.login();
+  // }
   @Post("login") // /auth/login
-  login() {
+  login(@Body() dto: AuthDto) {
+    console.log(dto);
     return this.authService.login();
   }
   @Post("register") // /auth/signin
