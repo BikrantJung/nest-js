@@ -21,12 +21,11 @@ export class AuthController {
   //   return this.authService.login();
   // }
   @Post("login") // /auth/login
-  login(@Body() dto: AuthDto) {
-    console.log(dto);
+  login() {
     return this.authService.login();
   }
   @Post("register") // /auth/signin
-  register() {
-    return this.authService.register();
+  register(@Body() dto: AuthDto) {
+    return this.authService.register(dto);
   }
 }
