@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from "@nestjs/common";
+import { ForbiddenException, Injectable, HttpStatus } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { AuthDto } from "./dto";
 import * as argon from "argon2";
@@ -6,6 +6,7 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { LoginDto } from "./dto/login.dto";
 import { JwtService } from "@nestjs/jwt/dist";
 import { ConfigService } from "@nestjs/config/dist";
+import { HttpCode } from "@nestjs/common/decorators/http/http-code.decorator";
 @Injectable({})
 export class AuthService {
   constructor(
@@ -41,6 +42,7 @@ export class AuthService {
       console.log("error while registering");
     }
   }
+  @HttpCode(HttpStatus.OK)
   async login({ email, password }: LoginDto) {
     try {
       // Search for user in database
