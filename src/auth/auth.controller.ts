@@ -2,6 +2,7 @@ import { Controller, Post } from "@nestjs/common";
 import { Body } from "@nestjs/common/decorators";
 import { AuthService } from "./auth.service";
 import { AuthDto } from "./dto";
+import { LoginDto } from "./dto/login.dto";
 
 // Controller is going to call a function from .service.ts
 // Controllers are responsible for creating endpoints
@@ -21,7 +22,7 @@ export class AuthController {
   //   return this.authService.login();
   // }
   @Post("login") // /auth/login
-  login(@Body() dto: AuthDto) {
+  login(@Body() dto: LoginDto) {
     return this.authService.login(dto);
   }
   @Post("register") // /auth/signin
