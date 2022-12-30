@@ -21,8 +21,8 @@ export class AuthController {
   //   return this.authService.login();
   // }
   @Post("login") // /auth/login
-  login() {
-    return this.authService.login();
+  login(@Body() dto: AuthDto) {
+    return this.authService.login(dto);
   }
   @Post("register") // /auth/signin
   register(@Body() dto: AuthDto) {
