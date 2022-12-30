@@ -13,7 +13,7 @@ export class JWTStrategy extends PassportStrategy(Strategy, "jwt") {
       secretOrKey: config.get("JWT_SECRET"),
     });
   }
-  async validate({ sub, email }: { sub: number; email: string }) {
+  async validate({ sub }: { sub: number; email: string }) {
     try {
       const user = await this.prisma.user.findUnique({
         where: {
